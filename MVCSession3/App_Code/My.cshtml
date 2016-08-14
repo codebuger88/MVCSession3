@@ -1,0 +1,9 @@
+﻿@helper ExternalAnchor(string href, string text)
+{
+    <a href="@href">@text</a>
+}
+
+@helper ExtImage(int width, int height)
+{
+    <img src="https://unsplash.it/@width/@height?random&v=@Guid.NewGuid()" />
+}

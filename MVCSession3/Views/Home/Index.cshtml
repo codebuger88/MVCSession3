@@ -1,4 +1,6 @@
-﻿@{
+﻿@using MVCSession3.Helper;
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -9,8 +11,25 @@
 </div>
 
 <div class="row">
+    @{
+        int[] array = { 1, 2, 3, 4 };
+    }
+
     <div class="col-md-4">
+        @array.TryGetValue(9)
+        <hr />
+        @array.TryGetValue(2)
         <h2>Getting started</h2>
+        <hr />
+        @Html.Raw(Html.Image("img1", "img1", 100, 100))
+        @Html.Raw(Html.Image("img2", "img2", 100, 100))
+        @Html.Raw(Html.Image("img3", "img3", 100, 100))
+        @Html.Image(100, 100)
+        <hr />
+        @ExternalAnchor("http://", "hello")
+        @ExtImage(100, 100)
+        @My.ExtImage(100, 100)
+
         <p>
             ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
             enables a clean separation of concerns and gives you full control over markup
@@ -29,3 +48,13 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+@helper ExternalAnchor(string href, string text)
+{
+    <a href="@href">@text</a>
+}
+
+@helper ExtImage(int width, int height)
+{
+    <img src="https://unsplash.it/@width/@height?random&v=@Guid.NewGuid()" />
+}
